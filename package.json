@@ -1,0 +1,26 @@
+{
+  "name": "text-summarizer",
+  "version": "1.0.0",
+  "description": "Text summarizer using Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SwapnikKatkoori/Text-Summarizer.git"
+  },
+  "keywords": [
+    "text",
+    "summary"
+  ],
+  "author": "Swapnik Katkoori",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SwapnikKatkoori/Text-Summarizer/issues"
+  },
+  "homepage": "https://github.com/SwapnikKatkoori/Text-Summarizer#readme",
+  "dependencies": {
+    "natural": "^0.6.3"
+  }
+}
