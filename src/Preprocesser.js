@@ -1,8 +1,8 @@
 const natural = require("natural");
+const WordPos = require("wordpos");
 
 class Preprocesser{
-	constructor(string_to_process){
-		this.string_to_process = string_to_process;
+	constructor(){
 		this.tokenizer = new natural.SentenceTokenizer(); 
 	}
 
@@ -13,12 +13,15 @@ class Preprocesser{
 
 	//Cleans the sentences
 	clean_sentences(list_to_clean){
+		let sentence_map = new Map();
 		const regex = /[&\/\\#,+()$~%.'":*?<>{}]/g;
 		for (let i = 0; i<list_to_clean.length; i++){
+			let original_sentence = list_to_clean[i];
 			list_to_clean[i] = list_to_clean[i].toLowerCase();
 			list_to_clean[i] = list_to_clean[i].replace(regex, "");
+			sentence_map.set(list_to_clean[i], original_sentence);
 		}
-		return list_to_clean;
+		return [list_to_clean,sentence_map];
 	}
 
 	tokenize_sentences(list_of_sentences){
@@ -71,32 +74,24 @@ class Preprocesser{
 			for (let j = 0; j<word_list.length; j++){
 				weight_of_sentence += weighted_map.get(word_list[j]);
 			}
-			sentence_weight_list.push([weight_of_sentence, sentence]);
+			sentence_weight_list.push([weight_of_sentence/word_list.length, sentence]);
 		}
 		return sentence_weight_list;
 	}
 
-	sort_sentences(sentence_weights_list){
-		sentence_weights_list.sort((a,b)=>{
-			return b[0]-a[0];
-		})
-		return sentence_weights_list
+	//Takes a list of sentences and returns a map of the each sentence to its nouns and adjectives
+	async nouns_and_adjectives(clean_sentences){
+		let nouns_and_adjectives_map = new Map();
+		let wordpos = new WordPos();
+		for (let i = 0; i<clean_sentences.length; i++){
+			let adjectives = await wordpos.getAdjectives(clean_sentences[i]);
+			let nouns = await wordpos.getNouns(clean_sentences[i]);
+			nouns_and_adjectives_map.set(nouns.concat(adjectives), clean_sentences[i]);
+		}
+
+		return nouns_and_adjectives_map;
 	}
 
-	process_string(){
-		const self = this
-		const list_to_clean = self.paragraph_to_sentences(self.string_to_process);
-		const clean_sentences = self.clean_sentences(list_to_clean);
-		const tokenized = self.tokenize_sentences(clean_sentences);
-		const weighted_map = self.get_weights(tokenized);
-		const sentence_weights_list = self.sentence_weights(clean_sentences, weighted_map);
-		const sorted_sentences = self.sort_sentences(sentence_weights_list);
-		let result_string = ""
-		for(var i=0; i<4; i++){
-			result_string+=sorted_sentences[i][1]+". ";
-		}
-		return result_string
-	}
 }
 
 

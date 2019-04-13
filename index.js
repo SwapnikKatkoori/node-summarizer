@@ -1,11 +1,6 @@
-const Preprocesser = require('./src/Preprocesser').Preprocesser;
-
-class Summarizer{
-	constructor(){
-		this.preprocesser = new Preprocesser("The Indiana Pacers and Indianapolis have agreed to a 25-year deal that commits roughly $800 million in public spending to keep the team in town.The Marion County Capital Improvement Board, which owns or manages the citys professional sports stadiums, voted unanimously in favor of the 157-page agreement at a Friday morning meeting. It will add amenities such as a big outdoor plaza, suite upgrades and an indoor fan deck and keep the Pacers in town through the 2043-44 NBA season, with options to extend it another three years. The terms include $295 million in public money announced at the meeting to upgrade Bankers Life Fieldhouse and roughly $362 million — described by the CIB later in the day as averaging $14.5 million a year over 25 years — to operate it over that time. The CIB would spend another $120 million on technology upgrades over 10 years, after which the board and the Pacers would renegotiate those terms to keep up with new tech. It also includes $17.6 million on maintenance and $4.6 million for the video and sound system that the CIB had previously agreed to pay.")
-		console.log(this.preprocesser.process_string())
-	}
-}
+const Summarizer = require('./src/Summarizer').Summarizer;
 
 
-const summarizer = new Summarizer()
+
+const summarizer = new Summarizer("Detroit Pistons star forward Blake Griffin is still day-to-day heading into the postseason, coach Dwane Casey said Friday. Griffin, who has been dealing with a troublesome left knee, did not play in the regular-season finale Wednesday when Detroit wrapped up a playoff spot by winning at New York. With some of the best players in the league headed for free agency in July, the upcoming playoffs have an added layer of stress. The NBA playoffs start Saturday, but Detroit opens its series against the top-seeded Milwaukee Bucks on Sunday night. The extra rest was a bit of a break for the Pistons, who also get two days off before Games 2 and 3. Griffin played 75 games this season, his most since 2013-14, when he was with the LA Clippers. He averaged a career-high 24.5 points per game, along with 7.5 rebounds and 5.4 assists. He also made a career-high 189 3-pointers, shooting 36 percent from beyond the arc.", 4);
+summarizer.summarize_by_rank()
