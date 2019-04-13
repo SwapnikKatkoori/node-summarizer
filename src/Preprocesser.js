@@ -13,18 +13,20 @@ class Preprocesser{
 
 	//Cleans the sentences
 	clean_sentences(list_to_clean){
-		const regex = /[a-z ]+/;
+		const regex = /[&\/\\#,+()$~%.'":*?<>{}]/g;
 		for (let i = 0; i<list_to_clean.length; i++){
 			list_to_clean[i] = list_to_clean[i].toLowerCase();
-			list_to_clean[i] = regex.exec(list_to_clean[i])[0];
+			list_to_clean[i] = list_to_clean[i].replace(regex, "");
 		}
 		return list_to_clean;
 	}
 
 	tokenize_sentences(list_of_sentences){
+		let new_array = new Array();
+		new_array = list_of_sentences
 		let result_list = [];
-		for (let i = 0; i<list_of_sentences.length; i++){
-			result_list = result_list.concat(list_of_sentences[i].split(" "));
+		for (let i = 0; i<new_array.length; i++){
+			result_list = result_list.concat(new_array[i].split(" "));
 		}
 		return result_list;
 	}
@@ -58,13 +60,42 @@ class Preprocesser{
 		return frequencies_map;
 	}
 
+	sentence_weights(clean_sentences, weighted_map){
+		let weight_of_sentence = 0;
+		let sentence_weight_list = [];
+		let sentence = "";
+		for (let i = 0; i<clean_sentences.length; i++){
+			sentence = clean_sentences[i];
+			let word_list = sentence.split(" ");
+			weight_of_sentence = 0;
+			for (let j = 0; j<word_list.length; j++){
+				weight_of_sentence += weighted_map.get(word_list[j]);
+			}
+			sentence_weight_list.push([weight_of_sentence, sentence]);
+		}
+		return sentence_weight_list;
+	}
+
+	sort_sentences(sentence_weights_list){
+		sentence_weights_list.sort((a,b)=>{
+			return b[0]-a[0];
+		})
+		return sentence_weights_list
+	}
+
 	process_string(){
 		const self = this
 		const list_to_clean = self.paragraph_to_sentences(self.string_to_process);
-		const cleaned = self.clean_sentences(list_to_clean);
-		const tokenized = self.tokenize_sentences(cleaned);
-		const weighted_map = self.get_weights(tokenized));
-		return tokenized;
+		const clean_sentences = self.clean_sentences(list_to_clean);
+		const tokenized = self.tokenize_sentences(clean_sentences);
+		const weighted_map = self.get_weights(tokenized);
+		const sentence_weights_list = self.sentence_weights(clean_sentences, weighted_map);
+		const sorted_sentences = self.sort_sentences(sentence_weights_list);
+		let result_string = ""
+		for(var i=0; i<4; i++){
+			result_string+=sorted_sentences[i][1]+". ";
+		}
+		return result_string
 	}
 }
 
