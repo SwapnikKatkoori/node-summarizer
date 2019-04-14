@@ -1,9 +1,12 @@
-const SummarizerManager = require("../src/SummarizerManager").SummarizerManager;
+const SummarizerManager = require("../src/SummarizerManager");
 let fs = require("fs");
 let content = fs.readFileSync(__dirname + "/test.txt", 'utf8');
+let content2 = fs.readFileSync(__dirname + "/test2.txt", 'utf8');
 
-test('Gets the sentiment analysis', () => {
-	let Summarizer = new SummarizerManager("This is some sample text. This should summarize quickly.");
+test('Gets the sentiment analysis', async () => {
+	let Summarizer = new SummarizerManager(content2, 3);
+	let summary = await Summarizer.get_summary_by_rank();
+	console.log(summary);
  	expect(typeof(Summarizer.get_sentiment())).toBe("number");
 });
 
@@ -51,3 +54,22 @@ test('Makes sure that it handles edge cases',async ()=>{
 	}
 	
 })
+
+// test('Tests the get_sentiment() function',async ()=>{
+// 	jest.setTimeout(30000);
+
+
+// })
+
+// test('Tests the get_frequency_reduction() function',()=>{
+// 	jest.setTimeout(30000);
+
+
+// })
+
+// test('Tests the get_rank_reduction() function',async ()=>{
+// 	jest.setTimeout(30000);
+
+
+// })
+
