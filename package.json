@@ -23,5 +23,8 @@
   "dependencies": {
     "natural": "^0.6.3",
     "wordpos": "^1.2.0"
+  },
+  "devDependencies": {
+    "jest": "^24.7.1"
   }
 }

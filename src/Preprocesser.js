@@ -1,5 +1,6 @@
 const natural = require("natural");
 const WordPos = require("wordpos");
+const WeightedGraph = require('./WeightedGraph').WeightedGraph;
 
 class Preprocesser{
 	constructor(){
@@ -83,14 +84,96 @@ class Preprocesser{
 	async nouns_and_adjectives(clean_sentences){
 		let nouns_and_adjectives_map = new Map();
 		let wordpos = new WordPos();
-		for (let i = 0; i<clean_sentences.length; i++){
-			let adjectives = await wordpos.getAdjectives(clean_sentences[i]);
-			let nouns = await wordpos.getNouns(clean_sentences[i]);
-			nouns_and_adjectives_map.set(nouns.concat(adjectives), clean_sentences[i]);
+		try{
+			for (let i = 0; i<clean_sentences.length; i++){
+				let adjectives = await wordpos.getAdjectives(clean_sentences[i]);
+				let nouns = await wordpos.getNouns(clean_sentences[i]);
+				nouns_and_adjectives_map.set(clean_sentences[i],nouns.concat(adjectives));
+			}
+
+			return nouns_and_adjectives_map;
+		}catch(err){
+			console.log(err)
+			return
+		}
+	}
+
+	get_edge_weights(list1, list2){
+		let weight = 0;
+		let intial = list1
+		let other = list2
+		if (list2.length >= list1.length){
+			intial = list2
+			other = list1
+		}
+		for(let i=0; i<intial.length; i++){
+			if(other.includes(intial[i])){
+				weight+=1;
+			}
 		}
 
-		return nouns_and_adjectives_map;
+		return weight
 	}
+
+	//Needs to be tested further
+	async create_text_rank_graph(nouns_and_adjactive_map){
+		let graph = new WeightedGraph();
+		let key_list = [];
+		let weight = 0
+		nouns_and_adjactive_map.forEach((value,key,map)=>{
+			key_list.push(key);
+		})
+		for(let i=0; i<key_list.length; i++){
+			for(let j=i+1; j<key_list.length; j++){
+				weight = this.get_edge_weights(nouns_and_adjactive_map.get(key_list[i]), nouns_and_adjactive_map.get(key_list[j]));
+				if(weight>0){
+					graph.add_edge(key_list[i], key_list[j], weight);
+				}
+			}
+
+		}
+		return graph;
+	}
+
+
+	text_rank(graph, nouns_and_adjactive_map){
+		let key_list = [];
+		let text_rank_map = new Map();
+		nouns_and_adjactive_map.forEach((value,key,map)=>{
+			key_list.push(key);
+		})
+		//random key to start with
+		let key = key_list[Math.floor(Math.random()*key_list.length)];
+		let vertex = graph.get_vertex(key);
+		let probability_list = [];
+		//random walk 
+		for (let i = 0; i < 1000; i++) {
+			let full_weight = 0
+			try{
+				vertex.adjacent.forEach((value, key, map)=>{
+					full_weight+=value;
+				})
+			}catch(err){
+				console.log(vertex)
+			}
+			vertex.adjacent.forEach((value, key, map)=>{
+				for(let x = 0; x<value; x++){
+					probability_list.push(key);
+				}
+			})
+
+			let sentence = probability_list[Math.floor(Math.random()*probability_list.length)];
+			if(text_rank_map.has(sentence)){
+				text_rank_map.set(sentence, text_rank_map.get(sentence)+1)
+			}else{
+				text_rank_map.set(sentence, 1);
+			}
+			vertex = graph.get_vertex(sentence);
+			probability_list = [];
+		}
+		return text_rank_map;
+	}
+
 
 }
 
