@@ -5,7 +5,7 @@ class SummarizerManager{
 	constructor(string, number_of_sentences){
 		this.string = string;
 		this.number_of_sentences = number_of_sentences;
-		this.current_summary = ""
+		this.current_summary = "";
 	}
 
 	get_sentiment(){

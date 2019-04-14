@@ -3,31 +3,31 @@ const Preprocesser = require('./Preprocesser').Preprocesser;
 class Summarizer{
 	constructor(string_to_process, number_of_sentences){
 		this.preprocesser = new Preprocesser();
-		this.number_of_sentences = number_of_sentences
-		this.string_to_process = string_to_process
-		this.original_length = 0
-		this.new_length = 0
+		this.number_of_sentences = number_of_sentences;
+		this.string_to_process = string_to_process;
+		this.original_length = 0;
+		this.new_length = 0;
 	}
 
 	sort_sentences(sentence_weights_list){
 		sentence_weights_list.sort((a,b)=>{
 			return b[0]-a[0];
 		})
-		return sentence_weights_list
+		return sentence_weights_list;
 	}
 
 	text_rank_map_to_list(text_rank_map){
-		let result_list = []
+		let result_list = [];
 		text_rank_map.forEach((value, key, map)=>{
-			result_list.push([value,key])
+			result_list.push([value,key]);
 		})
 
 		return result_list;
 	}
 	get_shorten_percentage(){
-		let self = this
-		let dec = self.new_length/self.original_length
-		let string_dec = String(dec)
+		let self = this;
+		let dec = self.new_length/self.original_length;
+		let string_dec = String(dec);
 		return string_dec.slice(2,4)+"."+string_dec.slice(4,5)+"%";
 	}
 
@@ -52,16 +52,16 @@ class Summarizer{
 		const list_to_clean = self.preprocesser.paragraph_to_sentences(self.string_to_process);
 		const clean_sentences = self.preprocesser.clean_sentences(list_to_clean);
 		const tokenized = self.preprocesser.tokenize_sentences(clean_sentences[0]);
-		this.original_length = tokenized.length
+		this.original_length = tokenized.length;
 		const weighted_map = self.preprocesser.get_weights(tokenized);
 		const sentence_weights_list = self.preprocesser.sentence_weights(clean_sentences[0], weighted_map);
 		const sorted_sentences = self.sort_sentences(sentence_weights_list);
 		
-		return self.list_to_string(sorted_sentences, clean_sentences)
+		return self.list_to_string(sorted_sentences, clean_sentences);
 	}
 
 	async summarize_by_rank(){
-		const self = this
+		const self = this;
 		const list_to_clean = self.preprocesser.paragraph_to_sentences(self.string_to_process);
 		const clean_sentences = self.preprocesser.clean_sentences(list_to_clean);
 		try{
@@ -70,7 +70,7 @@ class Summarizer{
 			let text_rank_map = self.preprocesser.text_rank(text_rank_graph);
 			let text_rank_list = self.sort_sentences(self.text_rank_map_to_list(text_rank_map));
 
-			let list_to_pass_in = text_rank_list
+			let list_to_pass_in = text_rank_list;
 			return self.list_to_string(text_rank_list, clean_sentences);
 		}catch(err){
 			console.log(err);
@@ -78,4 +78,4 @@ class Summarizer{
 	}
 }
 
-module.exports.Summarizer = Summarizer
+module.exports.Summarizer = Summarizer;
