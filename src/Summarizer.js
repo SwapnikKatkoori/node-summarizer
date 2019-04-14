@@ -32,15 +32,19 @@ class Summarizer{
 	}
 
 	list_to_string(sorted_sentences, clean_sentences){
-		const self = this
-		let result_string = ""
-		let length_count = 0
-		for(var i=0; i<self.number_of_sentences; i++){
-			length_count += sorted_sentences[i][1].split(" ").length
+		const self = this;
+		let result_string = "";
+		let length_count = 0;
+		let count = self.number_of_sentences;
+		if(sorted_sentences.length < self.number_of_sentences){
+			count = sorted_sentences.length;
+		}
+		for(var i=0; i<count; i++){
+			length_count += sorted_sentences[i][1].split(" ").length;
 			result_string+=clean_sentences[1].get(sorted_sentences[i][1]);
 		}
 		this.new_length = length_count;
-		return result_string
+		return result_string;
 	}
 
 	summarize_by_frequency(){
@@ -62,8 +66,8 @@ class Summarizer{
 		const clean_sentences = self.preprocesser.clean_sentences(list_to_clean);
 		try{
 			const nouns_and_adjactive_map = await self.preprocesser.nouns_and_adjectives(clean_sentences[0]);
-			let text_rank_graph = await self.preprocesser.create_text_rank_graph(nouns_and_adjactive_map);
-			let text_rank_map = self.preprocesser.text_rank(text_rank_graph,nouns_and_adjactive_map);
+			let text_rank_graph = self.preprocesser.create_text_rank_graph(nouns_and_adjactive_map);
+			let text_rank_map = self.preprocesser.text_rank(text_rank_graph);
 			let text_rank_list = self.sort_sentences(self.text_rank_map_to_list(text_rank_map));
 			return self.list_to_string(text_rank_list, clean_sentences);
 		}catch(err){

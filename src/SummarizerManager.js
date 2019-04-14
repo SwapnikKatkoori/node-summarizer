@@ -10,29 +10,24 @@ class SummarizerManager{
 
 	get_sentiment(){
 		let self = this;
-		if (self.current_summary != ""){
-			let Analyzer = require('natural').SentimentAnalyzer;
-			let stemmer = require('natural').PorterStemmer;
-			let analyzer = new Analyzer("English", stemmer, "afinn");
-			return analyzer.getSentiment(this.string.split(" "));
-		}else{
-			return Error("Error in get sentiment");
-		}
+		let Analyzer = require('natural').SentimentAnalyzer;
+		let stemmer = require('natural').PorterStemmer;
+		let analyzer = new Analyzer("English", stemmer, "afinn");
+		return analyzer.getSentiment(self.string.split(" "));
+		
 	}
 
 	get_summary_by_frequency(){
-		let self = this;
-		let summarizer = new Summarizer(self.string, self.number_of_sentences);
+		let summarizer = new Summarizer(this.string, this.number_of_sentences);
 		const summary = summarizer.summarize_by_frequency();
-		self.current_summary = summary;
+		this.current_summary = summary;
 		return summary;
 	}
 
 	get_summary_by_rank(){
-		let self = this;
-		let summarizer = new Summarizer(self.string, self.number_of_sentences);
+		let summarizer = new Summarizer(this.string, this.number_of_sentences);
 		const summary = summarizer.summarize_by_rank();
-		self.current_summary = summary;
+		this.current_summary = summary;
 		return summary;
 	}
 }

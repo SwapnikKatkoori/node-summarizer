@@ -9,7 +9,12 @@ class Preprocesser{
 
 	//Turns the paragraph into a list of sentences 
 	paragraph_to_sentences(string_to_process){
-		return this.tokenizer.tokenize(string_to_process);
+		try{
+			let result = this.tokenizer.tokenize(string_to_process);
+			return result;
+		}catch(err){
+			return Error("Cannot toeknize the given string.");
+		}
 	}
 
 	//Cleans the sentences
@@ -91,7 +96,7 @@ class Preprocesser{
 				nouns_and_adjectives_map.set(clean_sentences[i],nouns.concat(adjectives));
 			}
 
-			return nouns_and_adjectives_map;
+			return await nouns_and_adjectives_map;
 		}catch(err){
 			console.log(err)
 			return
@@ -116,7 +121,7 @@ class Preprocesser{
 	}
 
 	//Needs to be tested further
-	async create_text_rank_graph(nouns_and_adjactive_map){
+	create_text_rank_graph(nouns_and_adjactive_map){
 		let graph = new WeightedGraph();
 		let key_list = [];
 		let weight = 0
@@ -136,31 +141,28 @@ class Preprocesser{
 	}
 
 
-	text_rank(graph, nouns_and_adjactive_map){
-		let key_list = [];
+	text_rank(graph){
+		let key_list = graph.get_all_vertices();
 		let text_rank_map = new Map();
-		nouns_and_adjactive_map.forEach((value,key,map)=>{
-			key_list.push(key);
-		})
+		
 		//random key to start with
 		let key = key_list[Math.floor(Math.random()*key_list.length)];
 		let vertex = graph.get_vertex(key);
 		let probability_list = [];
 		//random walk 
-		for (let i = 0; i < 1000; i++) {
+		for (let i = 0; i < 10000; i++) {
 			let full_weight = 0
-			try{
-				vertex.adjacent.forEach((value, key, map)=>{
-					full_weight+=value;
-				})
-			}catch(err){
-				console.log(vertex)
-			}
+		
+			vertex.adjacent.forEach((value, key, map)=>{
+				full_weight+=value;
+			})
+		
 			vertex.adjacent.forEach((value, key, map)=>{
 				for(let x = 0; x<value; x++){
 					probability_list.push(key);
 				}
 			})
+		
 
 			let sentence = probability_list[Math.floor(Math.random()*probability_list.length)];
 			if(text_rank_map.has(sentence)){
@@ -168,10 +170,12 @@ class Preprocesser{
 			}else{
 				text_rank_map.set(sentence, 1);
 			}
+			let last_vertex = vertex;
 			vertex = graph.get_vertex(sentence);
 			probability_list = [];
 		}
 		return text_rank_map;
+		
 	}
 
 

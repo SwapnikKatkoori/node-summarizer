@@ -35,6 +35,14 @@ class WeightedGraph{
 		this.vertices_map.get(a).adjacent.set(b, weight);
 		this.vertices_map.get(b).adjacent.set(a, weight);
 	}
+
+	get_all_vertices(){
+		let result_list = []
+		this.vertices_map.forEach((value, key, map)=>{
+			result_list.push(key);
+		})
+		return result_list;
+	}
 }
 
 module.exports.WeightedGraph = WeightedGraph;
