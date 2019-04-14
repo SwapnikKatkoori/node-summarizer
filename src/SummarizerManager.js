@@ -18,17 +18,26 @@ class SummarizerManager{
 	}
 
 	get_summary_by_frequency(){
-		let summarizer = new Summarizer(this.string, this.number_of_sentences);
-		const summary = summarizer.summarize_by_frequency();
-		this.current_summary = summary;
-		return summary;
+		try{
+			let summarizer = new Summarizer(this.string, this.number_of_sentences);
+			const summary = summarizer.summarize_by_frequency();
+			this.current_summary = summary;
+			return summary;
+		}catch(err){
+			return Error("An invalid sentence was entered");
+		}
+
 	}
 
 	get_summary_by_rank(){
-		let summarizer = new Summarizer(this.string, this.number_of_sentences);
-		const summary = summarizer.summarize_by_rank();
-		this.current_summary = summary;
-		return summary;
+		try{
+			let summarizer = new Summarizer(this.string, this.number_of_sentences);
+			const summary = summarizer.summarize_by_rank();
+			this.current_summary = summary;
+			return summary;
+		}catch(err){
+			return Error("An invalid sentence was entered");
+		}
 	}
 }
 

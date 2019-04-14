@@ -69,6 +69,8 @@ class Summarizer{
 			let text_rank_graph = self.preprocesser.create_text_rank_graph(nouns_and_adjactive_map);
 			let text_rank_map = self.preprocesser.text_rank(text_rank_graph);
 			let text_rank_list = self.sort_sentences(self.text_rank_map_to_list(text_rank_map));
+
+			let list_to_pass_in = text_rank_list
 			return self.list_to_string(text_rank_list, clean_sentences);
 		}catch(err){
 			console.log(err);

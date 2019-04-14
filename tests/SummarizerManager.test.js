@@ -17,3 +17,37 @@ test('Makes sure that there are no errors in the random walk',async ()=>{
 
 	}
 })
+
+test('Makes sure that there are no errors in frequency approach',()=>{
+	jest.setTimeout(30000);
+
+	for(let i = 0; i<500; i++){
+		let Summarizer = new SummarizerManager(content,5);
+		let summary = Summarizer.get_summary_by_frequency()
+		expect(typeof(summary)).toBe('string');
+
+	}
+})
+
+test('Makes sure that it handles edge cases',async ()=>{
+	jest.setTimeout(30000);
+
+	let Summarizer = new SummarizerManager("A simple sentence.",5);
+	let summary = Summarizer.get_summary_by_frequency()
+	expect(typeof(summary)).toBe('string');
+
+	for(let i = 0; i<15; i++){
+		Summarizer.get_summary_by_frequency()
+		expect(typeof(summary)).toBe('string');
+	}
+
+	let rank_summary = await Summarizer.get_summary_by_rank()
+	console.log(rank_summary);
+	expect(typeof(rank_summary)).toBe('string');
+	
+	for(let i = 0; i<15; i++){
+		rank_summary = await Summarizer.get_summary_by_rank()
+		expect(typeof(rank_summary)).toBe('string');
+	}
+	
+})

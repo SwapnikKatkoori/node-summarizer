@@ -146,6 +146,9 @@ class Preprocesser{
 		let text_rank_map = new Map();
 		
 		//random key to start with
+		if (key_list.length == 0){
+			return text_rank_map;
+		}
 		let key = key_list[Math.floor(Math.random()*key_list.length)];
 		let vertex = graph.get_vertex(key);
 		let probability_list = [];
