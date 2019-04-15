@@ -39,11 +39,11 @@ To get started, initilize a SummaryManager object.
 ```
 let SummarizerManager = require("text-summarizer").SummarizerManager;
 
-let summarizer = new SummarizerManager(text_to_summarize,number_of_sentences); 
+let Summarizer = new SummarizerManager(text_to_summarize,number_of_sentences); 
 ```
 - text_to_summarize: is a String of the text you want summarized.
 
-- number_of_sentenced: is an Int of how many sentences you want in the summary.
+- number_of_sentences: is an Int of how many sentences you want in the summary.
 
 <a name="getsum"></a>
 ### Gettting a summary
@@ -51,7 +51,7 @@ let summarizer = new SummarizerManager(text_to_summarize,number_of_sentences);
 <a name="desc"></a>
 ## 3. How it Works
 
-Frequency based algorithm:
+### Frequency based algorithm:
 
 This type of summary works best for text that is not too complicated. The advantage of this approach is that it more efficient 
 
@@ -66,7 +66,7 @@ than the textrank implementation. It was heavily inspired by this post https://s
 - Take the calculated frequencies of the words and calculate the total weight of the original sentences.
 
 
-TextRank based algorithm:
+### TextRank based algorithm:
 
 -
 
@@ -74,9 +74,9 @@ TextRank based algorithm:
 ## 4. Dependancies
   [natural](https://github.com/NaturalNode/natural)
     
-   -Used for tokenizing sentences and sentiment analysis
+   - Used for tokenizing sentences and sentiment analysis
     
   [wordpos](https://github.com/moos/wordpos)
   
-   -Used to detect nouns and adjectives in a sentence in the TextRank algorithm.
+   - Used to detect nouns and adjectives in a sentence in the TextRank algorithm.
   
