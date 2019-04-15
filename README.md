@@ -11,7 +11,7 @@ infromation about the two different approaches used.
 
 1. [ Installation ](#install)
 
-2. [Usage](#usage)
+2. [Quick Start](#usage)
     
     * [Initialization](#init)
     
@@ -30,7 +30,7 @@ This package is available through NPM, and can be installed using:
 npm install -s text-summarizer
 ```
 <a name="usage"></a>
-## 2. Usage
+## 2. Quick Start
 
 <a name="init"></a>
 ### Initialization
@@ -48,6 +48,22 @@ let Summarizer = new SummarizerManager(text_to_summarize,number_of_sentences);
 
 <a name="getsum"></a>
 ### Gettting a summary
+
+To get a frequency summary:
+
+```
+let summary = Summarizer.get_summary_by_frequency().summary;
+```
+- The get_summary_by_frequency() method returns as object. More information on it in the "Method Details" section
+
+To get a TextRank summary:
+
+```
+let summary;
+Summarizer.get_summary_by_rank().then((summary_object)=>{
+    summary = summary_object.summary;
+})
+```
 
 <a name="meth"></a>
 ## 3. Method Details
