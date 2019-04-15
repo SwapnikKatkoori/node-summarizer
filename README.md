@@ -16,9 +16,10 @@ infromation about the two different approaches used.
     * [Initialization](#init)
     
     * [Getting a summary](#getsum)
+3. [Method Details](#meth)
   
-3. [ How it Works ](#desc)
-4. [ Dependencies ](#depend)
+4. [ How it Works ](#desc)
+5. [ Dependencies ](#depend)
 
 <a name="install"></a>
 ## 1. Install
@@ -48,8 +49,12 @@ let Summarizer = new SummarizerManager(text_to_summarize,number_of_sentences);
 <a name="getsum"></a>
 ### Gettting a summary
 
+<a name="meth"></a>
+## 3. Method Details
+
+
 <a name="desc"></a>
-## 3. How it Works
+## 4. How it Works
 
 ### Frequency based algorithm:
 
@@ -71,7 +76,7 @@ than the textrank implementation. It was heavily inspired by this post https://s
 -
 
 <a name="depend"></a>
-## 4. Dependancies
+## 5. Dependancies
   [natural](https://github.com/NaturalNode/natural)
     
    - Used for tokenizing sentences and sentiment analysis
