@@ -13,7 +13,7 @@ infromation about the two different approaches used.
 
 2. [Usage](#usage)
 
-  -[Initialization](#init)
+    -[Initialization](#init)
   
 3. [ How it Works ](#desc)
 
@@ -29,7 +29,7 @@ npm install -s text-summarizer
 ## 2. Usage
 
 <a name="init"></a>
-#Initialization
+# Initialization
 
 
 <a name="desc"></a>
