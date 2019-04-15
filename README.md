@@ -13,8 +13,9 @@ infromation about the two different approaches used.
 
 2. [Usage](#usage)
     
-    *[Initialization](#init)
-    *[Getting a summary](#getsum)
+    * [Initialization](#init)
+    
+    * [Getting a summary](#getsum)
   
 3. [ How it Works ](#desc)
 4. [ Dependencies ](#depend)
