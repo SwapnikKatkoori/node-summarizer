@@ -13,7 +13,8 @@ infromation about the two different approaches used.
 
 2. [Usage](#usage)
 
-    -[Initialization](#init)
+    *[Initialization](#init)
+    *[Getting a summary](#getsum)
   
 3. [ How it Works ](#desc)
 
@@ -31,6 +32,9 @@ npm install -s text-summarizer
 <a name="init"></a>
 ### Initialization
 
+
+<a name="getsum"></a>
+### Gettting a summary
 
 <a name="desc"></a>
 ## 3. How it Works
