@@ -1,14 +1,25 @@
 # text-summarizer
-
-1. [ Description. ](#desc)
-2. [ Installation ](#install)
-
-<a name="desc"></a>
-## 1. Description
-
 Text-summarizer is a node.js module that summarizes a given text into a given number of sentences. This module uses two
 
 different extractive summarization techniques: frequency based and textrank based. 
+
+# Table of Contents
+
+1. [ Installation ](#install)
+
+2. [ How it Works ](#desc)
+
+<a name="install"></a>
+## 1. Install
+
+This package is available through NPM, and can be installed using:
+
+```
+npm install -s text-summarizer
+```
+
+<a name="desc"></a>
+## 2. Description
 
 Frequency based algorithm:
 
@@ -24,12 +35,4 @@ TextRank based algorithm:
 
 -
 
-<a name="install"></a>
-## 2. Install
-
-This package is available through NPM, and can be installed using:
-
-```
-npm install -s text-summarizer
-```
 
