@@ -1,5 +1,5 @@
 # text-summarizer
-Text-summarizer is a node.js module that summarizes a given text into a given number of sentences. This module uses two
+Text-summarizer is a node.js module that summarizes text into a specified number of sentences. This module uses two
 
 different extractive summarization techniques: frequency based and textrank based. It also provides sentiment anylisis on the 
 
@@ -12,11 +12,12 @@ infromation about the two different approaches used.
 1. [ Installation ](#install)
 
 2. [Usage](#usage)
-
+    
     *[Initialization](#init)
     *[Getting a summary](#getsum)
   
 3. [ How it Works ](#desc)
+4. [ Dependencies ](#depend)
 
 <a name="install"></a>
 ## 1. Install
@@ -58,4 +59,13 @@ TextRank based algorithm:
 
 -
 
-
+<a name="depend"></a>
+## 4. Dependancies
+  - <a src="https://github.com/NaturalNode/natural">natural</a>
+    
+    -Used for tokenizing sentences and sentiment analysis
+    
+  - <a src="https://github.com/moos/wordpos">wordpos</a>
+  
+    -Used to detect nouns and adjectives in a sentence in the TextRank algorithm.
+  
