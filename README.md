@@ -63,9 +63,9 @@ TextRank based algorithm:
 ## 4. Dependancies
   [natural](https://github.com/NaturalNode/natural)
     
-    -Used for tokenizing sentences and sentiment analysis
+   -Used for tokenizing sentences and sentiment analysis
     
   [wordpos](https://github.com/moos/wordpos)
   
-    -Used to detect nouns and adjectives in a sentence in the TextRank algorithm.
+   -Used to detect nouns and adjectives in a sentence in the TextRank algorithm.
   
