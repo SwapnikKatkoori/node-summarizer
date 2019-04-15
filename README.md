@@ -29,7 +29,7 @@ npm install -s text-summarizer
 ## 2. Usage
 
 <a name="init"></a>
-# Initialization
+### Initialization
 
 
 <a name="desc"></a>
