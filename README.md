@@ -34,6 +34,16 @@ npm install -s text-summarizer
 <a name="init"></a>
 ### Initialization
 
+To get started, initilize a SummaryManager object.
+
+```
+let SummarizerManager = require("text-summarizer").SummarizerManager;
+
+let summarizer = new SummarizerManager(text_to_summarize,number_of_sentences); 
+```
+- text_to_summarize: is a String of the text you want summarized.
+
+- number_of_sentenced: is an Int of how many sentences you want in the summary.
 
 <a name="getsum"></a>
 ### Gettting a summary
