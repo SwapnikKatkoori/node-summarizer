@@ -61,11 +61,11 @@ TextRank based algorithm:
 
 <a name="depend"></a>
 ## 4. Dependancies
-  - <a src="https://github.com/NaturalNode/natural">natural</a>
+  [natural](https://github.com/NaturalNode/natural)
     
     -Used for tokenizing sentences and sentiment analysis
     
-  - <a src="https://github.com/moos/wordpos">wordpos</a>
+  [wordpos](https://github.com/moos/wordpos)
   
     -Used to detect nouns and adjectives in a sentence in the TextRank algorithm.
   
