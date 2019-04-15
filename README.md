@@ -1,13 +1,21 @@
 # text-summarizer
 Text-summarizer is a node.js module that summarizes a given text into a given number of sentences. This module uses two
 
-different extractive summarization techniques: frequency based and textrank based. 
+different extractive summarization techniques: frequency based and textrank based. It also provides sentiment anylisis on the 
+
+given text, reduction percentage, as well as other information about the text. Read the How it Works section for more 
+
+infromation about the two different approaches used.
 
 # Table of Contents
 
 1. [ Installation ](#install)
 
-2. [ How it Works ](#desc)
+2. [Usage](#usage)
+
+  -[Initialization](#init)
+  
+3. [ How it Works ](#desc)
 
 <a name="install"></a>
 ## 1. Install
@@ -17,11 +25,21 @@ This package is available through NPM, and can be installed using:
 ```
 npm install -s text-summarizer
 ```
+<a name="usage"></a>
+## 2. Usage
+
+<a name="init"></a>
+#Initialization
+
 
 <a name="desc"></a>
-## 2. Description
+## 3. How it Works
 
 Frequency based algorithm:
+
+This type of summary works best for text that is not too complicated. The advantage of this approach is that it more efficient 
+
+than the textrank implementation. It was heavily inspired by this post https://stackabuse.com/text-summarization-with-nltk-in-python/
 
 - Split the given text into sentences.
 
@@ -30,6 +48,7 @@ Frequency based algorithm:
 - Make a list of all the words that occur in the text and find the frequency of the words.
 
 - Take the calculated frequencies of the words and calculate the total weight of the original sentences.
+
 
 TextRank based algorithm:
 
