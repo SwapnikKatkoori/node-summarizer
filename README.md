@@ -3,7 +3,9 @@ Text-summarizer is a node.js module that summarizes text into a specified number
 
 different extractive summarization techniques: frequency based and textrank based. It also provides sentiment anylisis on the 
 
-given text, reduction percentage, as well as other information about the text. Read the How it Works section for more 
+given text, reduction percentage, as well as other information about the text and generated summary. Read the How it Works
+
+section for more 
 
 infromation about the two different approaches used.
 
