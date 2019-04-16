@@ -33,7 +33,7 @@ This package is available through NPM, and can be installed using:
 npm install -s text-summarizer
 ```
 <a name="usage"></a>
-## 2. Quick Start
+## 2. Quick Start 
 
 <a name="init"></a>
 ### Initialization
