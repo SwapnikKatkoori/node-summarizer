@@ -60,7 +60,7 @@ To get a **frequency summary**:
 ```
 let summary = Summarizer.getSummaryByFrequency().summary;
 ```
-- The getSummaryByFrequency() method returns as object. More information on it in the "Method Details" section
+- The getSummaryByFrequency() method returns as object. More information on it in the [Method Details](#meth) section
 
 To get a **TextRank summary**:
 
@@ -70,7 +70,7 @@ Summarizer.getSummaryByRank().then((summary_object)=>{
     summary = summary_object.summary;
 })
 ```
-- The getSummaryByRank() method returns a Promise. More information on it in the "Method Details" section
+- The getSummaryByRank() method returns a Promise. More information on it in the [Method Details](#meth) section
 
 <a name="getred"></a>
 ### Getting a reduction percentage
