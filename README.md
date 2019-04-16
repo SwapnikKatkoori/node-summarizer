@@ -18,6 +18,8 @@ infromation about the two different approaches used.
     * [Initialization](#init)
     
     * [Getting a summary](#getsum)
+    
+    * [Getting a reduction percentage](#getred)
 3. [Method Details](#meth)
   
 4. [ How it Works ](#desc)
@@ -67,6 +69,36 @@ Summarizer.getSummaryByRank().then((summary_object)=>{
     summary = summary_object.summary;
 })
 ```
+
+<a name="getred"></a>
+### Getting a reduction percentage
+
+To get the reduction percentage as a decimal:
+
+```
+//If you want the reduction percentage of a frequency summary
+let reduction_percentage = Summarizer.getFrequencyReductionAsDec().dec_reduction;
+
+//If you want the reduction percentage of a TextRank summary
+let reduction_percentage;
+Summarizer.getRankReductionAsDec().then((reduction_obj)=>{
+    reduction_percentage = reduction_obj.dec_reduction;
+})
+```
+
+To get the reduction percentage as a string:
+
+```
+//If you want the reduction percentage of a frequency summary
+let reduction_percentage = Summarizer.getFrequencyReduction().reduction;
+
+//If you want the reduction percentage of a TextRank summary
+let reduction_percentage;
+Summarizer.getRankReduction().then((reduction_obj)=>{
+    reduction_percentage = reduction_obj.reduction;
+})
+```
+
 
 <a name="meth"></a>
 ## 3. Method Details
