@@ -55,6 +55,8 @@ let Summarizer = new SummarizerManager(text_to_summarize,number_of_sentences);
 <a name="getsum"></a>
 ### Gettting a summary
 
+There are two different approaches taken for summarization. Read the [How it Works](#desc) for more information on each of them. 
+
 To get a **frequency summary**:
 
 ```
@@ -165,8 +167,8 @@ This method returns a Promise. The result of the Promise is an object with:
     
 }
 ```
--Calling this method without first calling the getSummaryByRank() method will still work. It will automatically create
-a rank summary
+-Calling this method without first calling the getSummaryByRank() method will still work. It will just automatically create
+a rank summary.
 
 ### getFrequencyReductionAsDec()
 
@@ -191,9 +193,6 @@ This method works the same way as getRankReductionAsDec and returns a Promise. T
     
 }
 ```
--Calling this method without first calling the getSummaryByFrequency() method will still work. It will automatically create
-a frequency summary.
-
 
 <a name="desc"></a>
 ## 4. How it Works
