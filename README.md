@@ -11,7 +11,7 @@ section for more infromation about the two different approaches used.
 
 1. [ Installation ](#install)
 
-2. [Quick Start](#usage)
+2. [Usage](#usage)
     
     * [Initialization](#init)
     
@@ -33,7 +33,7 @@ This package is available through NPM, and can be installed using:
 npm install -s text-summarizer
 ```
 <a name="usage"></a>
-## 2. Quick Start 
+## 2. Usage 
 
 <a name="init"></a>
 ### Initialization
