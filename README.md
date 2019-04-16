@@ -71,6 +71,7 @@ Summarizer.getSummaryByRank().then((summary_object)=>{
     summary = summary_object.summary;
 })
 ```
+- The getSummaryByRank() method returns a Promise. More information on it in the "Method Details" section
 
 <a name="getred"></a>
 ### Getting a reduction percentage
