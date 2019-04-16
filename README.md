@@ -105,7 +105,7 @@ Summarizer.getRankReduction().then((reduction_obj)=>{
 <a name="Sentiment"></a>
 ### Sentiment Analysis
 
-To get the sentiment analysis of the string to be summarized:
+To get the sentiment value of the string to be summarized:
 
 ```
 let sentiment = Summarizer.getSentiment();
