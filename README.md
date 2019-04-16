@@ -23,7 +23,6 @@ infromation about the two different approaches used.
     
     * [Sentiment Analysis](#sentiment)
 3. [Method Details](#meth)
-  
 4. [ How it Works ](#desc)
 5. [ Dependencies ](#depend)
 
@@ -115,6 +114,85 @@ let sentiment = Summarizer.getSentiment();
 
 <a name="meth"></a>
 ## 3. Method Details
+
+### getSummaryByFrequency()
+
+Once a SummarizerManager object has been initialized, calling this method will return an object with:
+
+```
+{
+    summary: "",    //String of the summary
+    sentence_list: [],  //List of all of the tokenized sentences in the given text
+    weighted_map: Map,  //Map of all of the tokenized words with their frequencies.
+    sorted_sentences: []   //A list of all of the sentences sorted by weights.
+}
+```
+
+### getSummaryByRank()
+
+This method returns a Promise. The result of the Promise is an object with:
+
+```
+{
+    summary: "",    //String of the summary
+    sentence_list: [],  //List of all of the tokenized sentences in the given text
+    nouns_and_adjactive_map: Map   //Map of all of the sentences with the values being a list of nouns and adjactives in the                                        sentence
+}
+```
+
+### getFrequencyReduction()
+
+Once a SummarizerObject has been initialized calling this method will return an object with:
+
+```
+{
+    reduction: "",  //A String of the percentage of reduction ex. "50.1%"
+    summary: ""     //Current frequency summary
+    
+}
+```
+-Calling this method without first calling the getSummaryByFrequency() method will still work. It will automatically create
+a frequency summary
+
+### getRankReduction()
+
+This method returns a Promise. The result of the Promise is an object with:
+
+```
+{
+    reduction: "",  //A String of the percentage of reduction ex. "50.1%"
+    summary: ""     //Current frequency summary
+    
+}
+```
+-Calling this method without first calling the getSummaryByRank() method will still work. It will automatically create
+a rank summary
+
+### getFrequencyReductionAsDec()
+
+This method works the same way as getFrequencyReduction and returns an object with:
+
+```
+{
+    dec_reduction: Float,  //A float of the reduction ex. .50192
+    summary: ""     //Current frequency summary
+    
+}
+```
+
+### getRankReductionAsDec()
+
+This method works the same way as getRankReductionAsDec and returns a Promise. The result of the Promise is an object with:
+
+```
+{
+    reduction: "",  //A String of the percentage of reduction ex. .50192
+    summary: ""     //Current frequency summary
+    
+}
+```
+-Calling this method without first calling the getSummaryByFrequency() method will still work. It will automatically create
+a frequency summary.
 
 
 <a name="desc"></a>
