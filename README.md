@@ -54,15 +54,15 @@ let Summarizer = new SummarizerManager(text_to_summarize,number_of_sentences);
 To get a frequency summary:
 
 ```
-let summary = Summarizer.get_summary_by_frequency().summary;
+let summary = Summarizer.getSummaryByFrequency().summary;
 ```
-- The get_summary_by_frequency() method returns as object. More information on it in the "Method Details" section
+- The getSummaryByFrequency() method returns as object. More information on it in the "Method Details" section
 
 To get a TextRank summary:
 
 ```
 let summary;
-Summarizer.get_summary_by_rank().then((summary_object)=>{
+Summarizer.getSummaryByRank().then((summary_object)=>{
     summary = summary_object.summary;
 })
 ```
