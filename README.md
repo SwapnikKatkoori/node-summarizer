@@ -110,10 +110,12 @@ To get the sentiment value of the string to be summarized:
 let sentiment = Summarizer.getSentiment();
 ```
 
--This will return an Int
+-This will return a Float
 
 <a name="meth"></a>
 ## 3. Method Details
+
+More details on the available methods of the SummarizerManager class.
 
 ### getSummaryByFrequency()
 
@@ -186,14 +188,21 @@ This method works the same way as getRankReductionAsDec and returns a Promise. T
 
 ```
 {
-    reduction: "",  //A String of the percentage of reduction ex. .50192
+    dec_reduction: "",  //A String of the percentage of reduction ex. .50192
     summary: ""     //Current frequency summary
     
 }
 ```
 
+### getSentiment()
+
+This method returns a Float of the sentiment value.
+
+
 <a name="desc"></a>
 ## 4. How it Works
+
+How the text is summarized.
 
 ### Frequency based algorithm:
 
