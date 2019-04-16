@@ -9,7 +9,7 @@ class SummarizerManager{
 		this.frequency_summary = "";
 	}
 
-	get_sentiment(){
+	getSentiment(){
 		let self = this;
 		let Analyzer = require('natural').SentimentAnalyzer;
 		let stemmer = require('natural').PorterStemmer;
@@ -17,9 +17,9 @@ class SummarizerManager{
 		return analyzer.getSentiment(self.string.split(" "));
 		
 	}
-	get_frequency_reduction(){
+	getFrequencyReduction(){
 		if (this.frequency_summary == ""){
-			this.frequency_summary = this.get_summary_by_frequency().summary;
+			this.frequency_summary = this.getSummaryByFrequency().summary;
 		}
 		let dec = 1-(this.frequency_summary.length/this.string.length);
 		let string_dec = String(dec);
@@ -29,9 +29,9 @@ class SummarizerManager{
 		};
 	}
 
-	async get_rank_reduction(){
+	async getRankReduction(){
 		if (this.rank_summary == ""){
-			await this.get_summary_by_rank();	
+			await this.getSummaryByRank();	
 		}
 		let dec = 1-(this.rank_summary.length/this.string.length);
 		let string_dec = String(dec);
@@ -42,9 +42,9 @@ class SummarizerManager{
 
 	}
 
-	async get_rank_reduction_as_dec(){
+	async getRankReductionAsDec(){
 		if (this.rank_summary == ""){
-			await this.get_summary_by_rank();
+			await this.getSummaryByRank();
 		}
 		let dec = 1-(this.rank_summary.length/this.string.length);
 		return {
@@ -53,9 +53,9 @@ class SummarizerManager{
 		}
 	}
 
-	get_frequency_reduction_as_dec(){
+	getFrequencyReductionAsDec(){
 		if (this.frequency_summary == ""){
-			this.frequency_summary = this.get_summary_by_frequency().summary;
+			this.frequency_summary = this.getSummaryByFrequency().summary;
 		}
 		let dec = 1-(this.frequency_summary.length/this.string.length);
 		return {
@@ -64,10 +64,10 @@ class SummarizerManager{
 		}
 	}
 
-	get_summary_by_frequency(){
+	getSummaryByFrequency(){
 		try{
 			let summarizer = new Summarizer(this.string, this.number_of_sentences);
-			const summary_obj = summarizer.summarize_by_frequency();
+			const summary_obj = summarizer.summarizeByFrequency();
 			this.frequency_summary = summary_obj.summary;
 			if(summary_obj.summary == ''){
 				summary_obj.summary = "Not Enough similarities to be summarized, or the sentence is invalid.",
@@ -80,10 +80,10 @@ class SummarizerManager{
 
 	}
 
-	async get_summary_by_rank(){
+	async getSummaryByRank(){
 		try{
 			let summarizer = new Summarizer(this.string, this.number_of_sentences);
-			const summary_obj = await summarizer.summarize_by_rank();
+			const summary_obj = await summarizer.summarizeByRank();
 			if(typeof(summary_obj.summary) === 'undefined' || summary_obj.summary == ''){
 				summary_obj.summary = "Not Enough similarities to be summarized, or the sentence is invalid.",
 				summary_obj.sentence_list = "Not enough similarities to be summarized, or the sentence is invalid."

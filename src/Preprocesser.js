@@ -8,7 +8,7 @@ class Preprocesser{
 	}
 
 	//Turns the paragraph into a list of sentences 
-	paragraph_to_sentences(string_to_process){
+	paragraphToSentences(string_to_process){
 		try{
 			let result = this.tokenizer.tokenize(string_to_process);
 			return result;
@@ -18,7 +18,7 @@ class Preprocesser{
 	}
 
 	//Cleans the sentences
-	clean_sentences(list_to_clean){
+	cleanSentences(list_to_clean){
 		let sentence_map = new Map();
 		const regex = /[&\/\\#,+()$~%.'":*?<>{}]/g;
 		for (let i = 0; i<list_to_clean.length; i++){
@@ -30,7 +30,7 @@ class Preprocesser{
 		return [list_to_clean,sentence_map];
 	}
 
-	tokenize_sentences(list_of_sentences){
+	tokenizeSentences(list_of_sentences){
 		let new_array = new Array();
 		new_array = list_of_sentences
 		let result_list = [];
@@ -40,7 +40,7 @@ class Preprocesser{
 		return result_list;
 	}
 
-	get_frequency_and_max(list_of_words){
+	getFrequencyAndMax(list_of_words){
 		let frequency_map = new Map();
 		let max = 0
 		for (let i = 0; i<list_of_words.length; i++){
@@ -59,8 +59,8 @@ class Preprocesser{
 	}
 	
 	//Converts a frequency map into a map with weights
-	get_weights(list_of_words){
-		const frequencies_and_max = this.get_frequency_and_max(list_of_words);
+	getWeights(list_of_words){
+		const frequencies_and_max = this.getFrequencyAndMax(list_of_words);
 		const frequencies_map = frequencies_and_max[0];
 		const max = frequencies_and_max[1];
 		frequencies_map.forEach((value,key,map)=>{
@@ -69,7 +69,7 @@ class Preprocesser{
 		return frequencies_map;
 	}
 
-	sentence_weights(clean_sentences, weighted_map){
+	sentenceWeights(clean_sentences, weighted_map){
 		let weight_of_sentence = 0;
 		let sentence_weight_list = [];
 		let sentence = "";
@@ -86,7 +86,7 @@ class Preprocesser{
 	}
 
 	//Takes a list of sentences and returns a map of the each sentence to its nouns and adjectives
-	async nouns_and_adjectives(clean_sentences){
+	async nounsAndAdjectives(clean_sentences){
 		let nouns_and_adjectives_map = new Map();
 		let wordpos = new WordPos();
 		try{
@@ -103,7 +103,7 @@ class Preprocesser{
 		}
 	}
 
-	get_edge_weights(list1, list2){
+	getEdgeWeights(list1, list2){
 		let weight = 0;
 		let intial = list1
 		let other = list2
@@ -121,7 +121,7 @@ class Preprocesser{
 	}
 
 	//Needs to be tested further
-	create_text_rank_graph(nouns_and_adjactive_map){
+	createTextRankGraph(nouns_and_adjactive_map){
 		let graph = new WeightedGraph();
 		let key_list = [];
 		let weight = 0
@@ -130,9 +130,9 @@ class Preprocesser{
 		})
 		for(let i=0; i<key_list.length; i++){
 			for(let j=i+1; j<key_list.length; j++){
-				weight = this.get_edge_weights(nouns_and_adjactive_map.get(key_list[i]), nouns_and_adjactive_map.get(key_list[j]));
+				weight = this.getEdgeWeights(nouns_and_adjactive_map.get(key_list[i]), nouns_and_adjactive_map.get(key_list[j]));
 				if(weight>0){
-					graph.add_edge(key_list[i], key_list[j], weight);
+					graph.addEdge(key_list[i], key_list[j], weight);
 				}
 			}
 
@@ -141,8 +141,8 @@ class Preprocesser{
 	}
 
 
-	text_rank(graph){
-		let key_list = graph.get_all_vertices();
+	textRank(graph){
+		let key_list = graph.getAllVertices();
 		let text_rank_map = new Map();
 		
 		//random key to start with
@@ -150,7 +150,7 @@ class Preprocesser{
 			return text_rank_map;
 		}
 		let key = key_list[Math.floor(Math.random()*key_list.length)];
-		let vertex = graph.get_vertex(key);
+		let vertex = graph.getVertex(key);
 		let probability_list = [];
 		//random walk 
 		for (let i = 0; i < 10000; i++) {
@@ -174,7 +174,7 @@ class Preprocesser{
 				text_rank_map.set(sentence, 1);
 			}
 			let last_vertex = vertex;
-			vertex = graph.get_vertex(sentence);
+			vertex = graph.getVertex(sentence);
 			probability_list = [];
 		}
 		return text_rank_map;

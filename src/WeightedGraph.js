@@ -11,32 +11,32 @@ class WeightedGraph{
 		this.size = 0;
 	}
 
-	add_vertex(value){
+	addVertex(value){
 		this.size+=1;
 		let vertex_to_add = new Vertex(value);
 		this.vertices_map.set(value, vertex_to_add);
 		return vertex_to_add;
 	}
 
-	get_vertex(value){
+	getVertex(value){
 		if (this.vertices_map.has(value)){
 			return this.vertices_map.get(value);
 		}
 		return 
 	}
 
-	add_edge(a, b, weight){
+	addEdge(a, b, weight){
 		if (!this.vertices_map.has(a)){
-			this.add_vertex(a);
+			this.addVertex(a);
 		}
 		if (!this.vertices_map.has(b)){
-			this.add_vertex(b);
+			this.addVertex(b);
 		}
 		this.vertices_map.get(a).adjacent.set(b, weight);
 		this.vertices_map.get(b).adjacent.set(a, weight);
 	}
 
-	get_all_vertices(){
+	getAllVertices(){
 		let result_list = []
 		this.vertices_map.forEach((value, key, map)=>{
 			result_list.push(key);

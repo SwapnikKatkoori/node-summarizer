@@ -5,9 +5,9 @@ let content2 = fs.readFileSync(__dirname + "/test2.txt", 'utf8');
 
 test('Gets the sentiment analysis', async () => {
 	let Summarizer = new SummarizerManager(content2, 3);
-	let summary_obj = await Summarizer.get_summary_by_rank();
+	let summary_obj = await Summarizer.getSummaryByRank();
 	console.log(summary_obj);
- 	expect(typeof(Summarizer.get_sentiment())).toBe("number");
+ 	expect(typeof(Summarizer.getSentiment())).toBe("number");
 });
 
 test('Makes sure that there are no errors in the random walk',async ()=>{
@@ -15,7 +15,7 @@ test('Makes sure that there are no errors in the random walk',async ()=>{
 
 	for(let i = 0; i<500; i++){
 		let Summarizer = new SummarizerManager(content,5);
-		let summary_obj = await Summarizer.get_summary_by_rank();
+		let summary_obj = await Summarizer.getSummaryByRank();
 		expect(typeof(summary_obj.summary)).toBe('string');
 
 	}
@@ -26,7 +26,7 @@ test('Makes sure that there are no errors in frequency approach',()=>{
 
 	for(let i = 0; i<500; i++){
 		let Summarizer = new SummarizerManager(content,5);
-		let summary_obj = Summarizer.get_summary_by_frequency();
+		let summary_obj = Summarizer.getSummaryByFrequency();
 		expect(typeof(summary_obj.summary)).toBe('string');
 
 	}
@@ -36,64 +36,64 @@ test('Makes sure that it handles edge cases',async ()=>{
 	jest.setTimeout(30000);
 
 	let Summarizer = new SummarizerManager("...",0);
-	let summary_obj = Summarizer.get_summary_by_frequency();
+	let summary_obj = Summarizer.getSummaryByFrequency();
 	console.log(summary_obj);
 	expect(typeof(summary_obj.summary)).toBe('string');
 
 	for(let i = 0; i<15; i++){
-		summary_obj = Summarizer.get_summary_by_frequency();
+		summary_obj = Summarizer.getSummaryByFrequency();
 		expect(typeof(summary_obj.summary)).toBe('string');
 	}
 
-	let rank_summary = await Summarizer.get_summary_by_rank();
+	let rank_summary = await Summarizer.getSummaryByRank();
 	console.log(rank_summary);
 	expect(typeof(rank_summary.summary)).toBe('string');
 	
 	for(let i = 0; i<15; i++){
-		rank_summary = await Summarizer.get_summary_by_rank();
+		rank_summary = await Summarizer.getSummaryByRank();
 		expect(typeof(rank_summary.summary)).toBe('string');
 	}
 	
 })
 
-// test('Tests the get_sentiment() function',async ()=>{
+// test('Tests the getSentiment() function',async ()=>{
 // 	jest.setTimeout(30000);
 
 
 // })
 
-test('Tests the get_frequency_reduction() function',async ()=>{
+test('Tests the getFrequencyReduction() function',async ()=>{
 	jest.setTimeout(30000);
 	let Summarizer = new SummarizerManager("This is a single sentence. This is a single sentence.", 1);
-	let reduction = Summarizer.get_frequency_reduction();
+	let reduction = Summarizer.getFrequencyReduction();
 	expect(reduction.reduction).toBe("50.9%");
 
 	let Summarizer2 = new SummarizerManager("This is a single sentence. This is a single sentence.", 1);
-	let summary = Summarizer2.get_summary_by_frequency();
-	let reduction2 = Summarizer.get_frequency_reduction();
+	let summary = Summarizer2.getSummaryByFrequency();
+	let reduction2 = Summarizer.getFrequencyReduction();
 	expect(reduction2.reduction).toBe("50.9%");
 
 	let Summarizer3 = new SummarizerManager("This is a single sentence. This is a single sentence.", 1);
-	let summary2 = await Summarizer2.get_summary_by_rank();
-	let reduction3 = Summarizer.get_frequency_reduction();
+	let summary2 = await Summarizer2.getSummaryByRank();
+	let reduction3 = Summarizer.getFrequencyReduction();
 	expect(reduction3.reduction).toBe("50.9%");
 
 })
 
-test('Tests the get_rank_reduction() function',async ()=>{
+test('Tests the getRankReduction() function',async ()=>{
 	jest.setTimeout(30000);
 	let Summarizer = new SummarizerManager("This is a single sentence. This is a single sentence. This is not", 1);
-	let reduction = await Summarizer.get_rank_reduction();
+	let reduction = await Summarizer.getRankReduction();
 	expect(typeof(reduction.reduction)).toBe('string');
 
 	let Summarizer2 = new SummarizerManager("This is a single sentence. This is a single sentence.", 1);
-	let summary = await Summarizer2.get_summary_by_rank();
-	let reduction2 = await Summarizer.get_rank_reduction();
+	let summary = await Summarizer2.getSummaryByRank();
+	let reduction2 = await Summarizer.getRankReduction();
 	expect(typeof(reduction2.reduction)).toBe('string');
 
 	let Summarizer3 = new SummarizerManager("This is a single sentence. This is a single sentence.", 1);
-	let summary2 = Summarizer2.get_summary_by_frequency();
-	Summarizer.get_rank_reduction().then((data)=>{
+	let summary2 = Summarizer2.getSummaryByFrequency();
+	Summarizer.getRankReduction().then((data)=>{
 		let reduction3 = data;
 		expect(typeof(reduction3.reduction)).toBe('string');
 	})
