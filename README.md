@@ -44,7 +44,7 @@ let SummarizerManager = require("text-summarizer").SummarizerManager;
 
 let Summarizer = new SummarizerManager(text_to_summarize,number_of_sentences); 
 ```
-**Params**
+*Params*
 - text_to_summarize: is a String of the text you want summarized.
 
 - number_of_sentences: is an Int of how many sentences you want in the summary.
