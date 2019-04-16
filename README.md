@@ -44,6 +44,7 @@ let SummarizerManager = require("text-summarizer").SummarizerManager;
 
 let Summarizer = new SummarizerManager(text_to_summarize,number_of_sentences); 
 ```
+**Params**
 - text_to_summarize: is a String of the text you want summarized.
 
 - number_of_sentences: is an Int of how many sentences you want in the summary.
@@ -51,14 +52,14 @@ let Summarizer = new SummarizerManager(text_to_summarize,number_of_sentences);
 <a name="getsum"></a>
 ### Gettting a summary
 
-To get a frequency summary:
+To get a **frequency summary**:
 
 ```
 let summary = Summarizer.getSummaryByFrequency().summary;
 ```
 - The getSummaryByFrequency() method returns as object. More information on it in the "Method Details" section
 
-To get a TextRank summary:
+To get a **TextRank summary**:
 
 ```
 let summary;
