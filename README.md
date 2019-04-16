@@ -20,6 +20,8 @@ infromation about the two different approaches used.
     * [Getting a summary](#getsum)
     
     * [Getting a reduction percentage](#getred)
+    
+    * [Sentiment Analysis](#sentiment)
 3. [Method Details](#meth)
   
 4. [ How it Works ](#desc)
@@ -99,6 +101,16 @@ Summarizer.getRankReduction().then((reduction_obj)=>{
 })
 ```
 
+<a name="Sentiment"></a>
+### Sentiment Analysis
+
+To get the sentiment analysis of the string to be summarized:
+
+```
+let sentiment = Summarizer.getSentiment();
+```
+
+-This will return an Int
 
 <a name="meth"></a>
 ## 3. Method Details
