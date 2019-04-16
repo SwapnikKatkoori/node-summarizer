@@ -24,11 +24,7 @@ section for more infromation about the two different approaches used.
 <a name="install"></a>
 ## 1. Install
 
-This package is available through NPM, and can be installed using:
 
-```
-npm install -s text-summarizer
-```
 <a name="usage"></a>
 ## 2. Usage 
 
