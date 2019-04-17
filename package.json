@@ -1,5 +1,5 @@
 {
-  "name": "text-summarizer",
+  "name": "node-summarizer",
   "version": "1.0.0",
   "description": "Text summarizer using Node.js",
   "main": "index.js",
@@ -12,7 +12,12 @@
   },
   "keywords": [
     "text",
-    "summary"
+    "summary",
+    "summarize",
+    "textrank",
+    "senitment",
+    "summarizer",
+    "summarization"
   ],
   "author": "Swapnik Katkoori",
   "license": "ISC",
