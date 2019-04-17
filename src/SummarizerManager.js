@@ -70,8 +70,8 @@ class SummarizerManager{
 			const summary_obj = summarizer.summarizeByFrequency();
 			this.frequency_summary = summary_obj.summary;
 			if(summary_obj.summary == ''){
-				summary_obj.summary = "Not Enough similarities to be summarized, or the sentence is invalid.",
-				summary_obj.sentence_list = "Not enough similarities to be summarized, or the sentence is invalid."
+				summary_obj.summary = Error("Not Enough similarities to be summarized, or the sentence is invalid."),
+				summary_obj.sentence_list = Error("Not enough similarities to be summarized, or the sentence is invalid.")
 			}
 			return summary_obj;
 		}catch(err){
@@ -85,8 +85,8 @@ class SummarizerManager{
 			let summarizer = new Summarizer(this.string, this.number_of_sentences);
 			const summary_obj = await summarizer.summarizeByRank();
 			if(typeof(summary_obj.summary) === 'undefined' || summary_obj.summary == ''){
-				summary_obj.summary = "Not Enough similarities to be summarized, or the sentence is invalid.",
-				summary_obj.sentence_list = "Not enough similarities to be summarized, or the sentence is invalid."
+				summary_obj.summary = Error("Not Enough similarities to be summarized, or the sentence is invalid."),
+				summary_obj.sentence_list = Error("Not enough similarities to be summarized, or the sentence is invalid.")
 			}
 			this.rank_summary = summary_obj.summary;
 			return summary_obj;

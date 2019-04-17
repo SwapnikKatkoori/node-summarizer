@@ -6,7 +6,6 @@ let content2 = fs.readFileSync(__dirname + "/test2.txt", 'utf8');
 test('Gets the sentiment analysis', async () => {
 	let Summarizer = new SummarizerManager(content2, 3);
 	let summary_obj = await Summarizer.getSummaryByRank();
-	console.log(summary_obj);
  	expect(typeof(Summarizer.getSentiment())).toBe("number");
 });
 
@@ -27,6 +26,9 @@ test('Makes sure that there are no errors in frequency approach',()=>{
 	for(let i = 0; i<500; i++){
 		let Summarizer = new SummarizerManager(content,5);
 		let summary_obj = Summarizer.getSummaryByFrequency();
+		if (i==0){
+			console.log(summary_obj.weighted_map)
+		}
 		expect(typeof(summary_obj.summary)).toBe('string');
 
 	}
@@ -37,21 +39,19 @@ test('Makes sure that it handles edge cases',async ()=>{
 
 	let Summarizer = new SummarizerManager("...",0);
 	let summary_obj = Summarizer.getSummaryByFrequency();
-	console.log(summary_obj);
-	expect(typeof(summary_obj.summary)).toBe('string');
+	expect(typeof(summary_obj.summary)).toBe('object');
 
 	for(let i = 0; i<15; i++){
 		summary_obj = Summarizer.getSummaryByFrequency();
-		expect(typeof(summary_obj.summary)).toBe('string');
+		expect(typeof(summary_obj.summary)).toBe('object');
 	}
 
 	let rank_summary = await Summarizer.getSummaryByRank();
-	console.log(rank_summary);
-	expect(typeof(rank_summary.summary)).toBe('string');
+	expect(typeof(rank_summary.summary)).toBe('object');
 	
 	for(let i = 0; i<15; i++){
 		rank_summary = await Summarizer.getSummaryByRank();
-		expect(typeof(rank_summary.summary)).toBe('string');
+		expect(typeof(rank_summary.summary)).toBe('object');
 	}
 	
 })
