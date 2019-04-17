@@ -28,6 +28,10 @@ section for more infromation about the two different approaches used.
 <a name="usage"></a>
 ## 2. Usage 
 
+The easisest way to use this is to initialize the SummaryManager object => Get a summary using one or both of the summarization methods => Get reduction percentage based on the summarization method used.
+
+Calling reduction without getting a summary first will still work as specified in [Method Details](#meth).
+
 <a name="init"></a>
 ### Initialization
 
