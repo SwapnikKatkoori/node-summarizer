@@ -53,7 +53,7 @@ To get a **frequency summary**:
 ```
 let summary = Summarizer.getSummaryByFrequency().summary;
 ```
-- The getSummaryByFrequency() method returns as object. More information on it in the [Method Details](#meth) section
+- The getSummaryByFrequency() method returns as object with summary as one of the properties. More information on it in the [Method Details](#meth) section
 
 To get a **TextRank summary**:
 
@@ -214,7 +214,16 @@ than the textrank implementation. It was heavily inspired by this post https://s
 
 ### TextRank based algorithm:
 
+- Split the given text into sentences.
+
+- Preprocess the sentences by removing all punctuation and making all letters lowercase.
+
+- Make a map of all of the sentences with the key being the sentences themselves and the values being an array of the nouns and adjactives in the sentence.
+ex. {"The Detroit Pistons are a good basketball team" => [detroit, pistons, good, basketball, team], "A basketball is round"=>[basketball, round]}
+
 -
+
+- Add sentences with 
 
 <a name="depend"></a>
 ## 5. Dependancies
