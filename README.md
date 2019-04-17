@@ -201,7 +201,7 @@ How the text is summarized.
 
 This type of summary works best for text that is not too complicated. The advantage of this approach is that it more efficient 
 
-than the textrank implementation. It was heavily inspired by this post https://stackabuse.com/text-summarization-with-nltk-in-python/
+than the textrank implementation. It was heavily inspired by this [post](https://stackabuse.com/text-summarization-with-nltk-in-python/).
 
 - Split the given text into sentences.
 
@@ -214,6 +214,10 @@ than the textrank implementation. It was heavily inspired by this post https://s
 
 ### TextRank based algorithm:
 
+While this approach costs more in terms of time complexity, it is better for getting the summary of things like newspaper 
+
+articles and essays. Read more about it [here](https://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf).
+
 - Split the given text into sentences.
 
 - Preprocess the sentences by removing all punctuation and making all letters lowercase.
@@ -221,9 +225,13 @@ than the textrank implementation. It was heavily inspired by this post https://s
 - Make a map of all of the sentences with the key being the sentences themselves and the values being an array of the nouns and adjactives in the sentence.
 ex. {"The Detroit Pistons are a good basketball team" => [detroit, pistons, good, basketball, team], "A basketball is round"=>[basketball, round]}
 
--
+- Make a weighted graph with edges that connect sentences with matching nouns or adjectives. The weight of each edge is the number of matching nouns and adjactives. In the example above, there would be two nodes connected with an edge of 1 for "basketball"
 
-- Add sentences with 
+- Choose a random starting point in the graph and "walk" through it many times using the weight of each edge as a probability of which next vertex to go to. For example, a node with two vertices with an edge of weight 4 and an edge of weight 3 would have a 4/7 chance to go to the first vertex and 3/7 chance to go to the other vertex. 
+
+- A count is kept of how many times a node is walked on.
+
+- Sort the sentences.
 
 <a name="depend"></a>
 ## 5. Dependancies
