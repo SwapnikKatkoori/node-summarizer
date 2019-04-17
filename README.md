@@ -70,10 +70,10 @@ let summary = Summarizer.getSummaryByRank().then((summary_object)=>{
 To get the reduction percentage as a decimal:
 
 ```
-//If you want the reduction percentage of a frequency summary
+//If you want the reduction percentage of a frequency summary.
 let reduction_percentage = Summarizer.getFrequencyReductionAsDec().dec_reduction;
 
-//If you want the reduction percentage of a TextRank summary
+//If you want the reduction percentage of a TextRank summary. Returns a promise.
 let reduction_percentage = Summarizer.getRankReductionAsDec().then((reduction_obj)=>{
     return reduction_obj.dec_reduction;
 })
@@ -82,10 +82,10 @@ let reduction_percentage = Summarizer.getRankReductionAsDec().then((reduction_ob
 To get the reduction percentage as a string:
 
 ```
-//If you want the reduction percentage of a frequency summary
+//If you want the reduction percentage of a frequency summary.
 let reduction_percentage = Summarizer.getFrequencyReduction().reduction;
 
-//If you want the reduction percentage of a TextRank summary
+//If you want the reduction percentage of a TextRank summary. Returns a promise.
 let reduction_percentage = Summarizer.getRankReduction().then((reduction_obj)=>{
     return reduction_obj.reduction;
 })
