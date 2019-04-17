@@ -58,9 +58,8 @@ let summary = Summarizer.getSummaryByFrequency().summary;
 To get a **TextRank summary**:
 
 ```
-let summary;
-Summarizer.getSummaryByRank().then((summary_object)=>{
-    summary = summary_object.summary;
+let summary = Summarizer.getSummaryByRank().then((summary_object)=>{
+    return summary_object.summary
 })
 ```
 - The getSummaryByRank() method returns a Promise. More information on it in the [Method Details](#meth) section
@@ -75,9 +74,9 @@ To get the reduction percentage as a decimal:
 let reduction_percentage = Summarizer.getFrequencyReductionAsDec().dec_reduction;
 
 //If you want the reduction percentage of a TextRank summary
-let reduction_percentage;
-Summarizer.getRankReductionAsDec().then((reduction_obj)=>{
-    reduction_percentage = reduction_obj.dec_reduction;
+
+let reduction_percentage = Summarizer.getRankReductionAsDec().then((reduction_obj)=>{
+    return reduction_obj.dec_reduction;
 })
 ```
 
@@ -88,9 +87,8 @@ To get the reduction percentage as a string:
 let reduction_percentage = Summarizer.getFrequencyReduction().reduction;
 
 //If you want the reduction percentage of a TextRank summary
-let reduction_percentage;
-Summarizer.getRankReduction().then((reduction_obj)=>{
-    reduction_percentage = reduction_obj.reduction;
+let reduction_percentage = Summarizer.getRankReduction().then((reduction_obj)=>{
+    return reduction_obj.reduction;
 })
 ```
 
