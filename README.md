@@ -108,7 +108,7 @@ let sentiment = Summarizer.getSentiment();
 
 - The easisest way to use this is to initialize the SummaryManager object => Get a summary using one or both of the summarization methods => Get reduction percentage based on the summarization method used.
 
--The alternative way is to simply initialize the SummaryManager object => call one of the reduction methods which automatically creates a summary if one doesn't exist and returns both the reduction percentage and new summary. This is fine if all you need is the reduction percentage and summary.
+- The alternative way is to simply initialize the SummaryManager object => call one of the reduction methods which automatically creates a summary if one doesn't exist and returns both the reduction percentage and new summary as an object. This is fine if all you need is the reduction percentage and summary.
 
 - If a sentence cannot be split into sentences or if there are not enough sentences, the summary will be an Error().
 
