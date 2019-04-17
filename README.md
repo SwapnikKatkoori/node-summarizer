@@ -2,7 +2,7 @@
 node-summarizer is a Node.js module that summarizes text into a specified number of sentences. This module uses two
 different extractive summarization techniques: frequency based and textrank based. It also provides sentiment analysis on the 
 given text, reduction percentage, as well as other information about the text and generated summary. Read the [How it Works](#desc) 
-section for more infromation about the two different approaches used.
+section for more information about the two different approaches used.
 
 # Table of Contents
 
