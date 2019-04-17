@@ -36,7 +36,7 @@ npm i node-summarizer
 <a name="init"></a>
 ### Initialization
 
-To get started, initilize a SummaryManager object.
+To get started, initialize a SummaryManager object.
 
 ```
 let SummarizerManager = require("node-summarizer").SummarizerManager;
