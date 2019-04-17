@@ -39,7 +39,7 @@ npm i node-summarizer
 To get started, initilize a SummaryManager object.
 
 ```
-let SummarizerManager = require("text-summarizer").SummarizerManager;
+let SummarizerManager = require("node-summarizer").SummarizerManager;
 
 let Summarizer = new SummarizerManager(text_to_summarize,number_of_sentences); 
 ```
