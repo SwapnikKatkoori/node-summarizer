@@ -74,7 +74,6 @@ To get the reduction percentage as a decimal:
 let reduction_percentage = Summarizer.getFrequencyReductionAsDec().dec_reduction;
 
 //If you want the reduction percentage of a TextRank summary
-
 let reduction_percentage = Summarizer.getRankReductionAsDec().then((reduction_obj)=>{
     return reduction_obj.dec_reduction;
 })
