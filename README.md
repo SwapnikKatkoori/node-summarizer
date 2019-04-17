@@ -53,7 +53,7 @@ To get a **frequency summary**:
 ```
 let summary = Summarizer.getSummaryByFrequency().summary;
 ```
-- The getSummaryByFrequency() method returns as object with summary as one of the properties. More information on it in the [Method Details](#meth) section
+- The getSummaryByFrequency() method returns as object with summary as one of the properties. More information on it in the [Method Details](#meth) section.
 
 To get a **TextRank summary**:
 
@@ -62,7 +62,7 @@ let summary = Summarizer.getSummaryByRank().then((summary_object)=>{
     return summary_object.summary
 })
 ```
-- The getSummaryByRank() method returns a Promise. More information on it in the [Method Details](#meth) section
+- The getSummaryByRank() method returns a Promise. More information on it in the [Method Details](#meth) section.
 
 <a name="getred"></a>
 ### Getting a reduction percentage
@@ -100,7 +100,7 @@ To get the sentiment value of the string to be summarized:
 let sentiment = Summarizer.getSentiment();
 ```
 
--This will return a Float
+-This will return a Float.
 
 <a name="meth"></a>
 ## 3. Method Details
@@ -144,7 +144,7 @@ Once a SummarizerObject has been initialized calling this method will return an 
 }
 ```
 -Calling this method without first calling the getSummaryByFrequency() method will still work. It will automatically create
-a frequency summary
+a frequency summary.
 
 ### getRankReduction()
 
