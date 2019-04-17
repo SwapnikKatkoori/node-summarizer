@@ -27,6 +27,10 @@ section for more infromation about the two different approaches used.
 <a name="install"></a>
 ## 1. Install
 
+To install using NPM
+```
+npm install -s node-summarizer
+```
 ## 2. Usage 
 
 <a name="init"></a>
