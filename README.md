@@ -17,6 +17,9 @@ section for more infromation about the two different approaches used.
     * [Getting a reduction percentage](#getred)
     
     * [Sentiment Analysis](#sentiment)
+    
+    * [Usage Notes](#note)
+    
 3. [Method Details](#meth)
 4. [ How it Works ](#desc)
 5. [ Dependencies ](#depend)
@@ -24,13 +27,7 @@ section for more infromation about the two different approaches used.
 <a name="install"></a>
 ## 1. Install
 
-
-<a name="usage"></a>
 ## 2. Usage 
-
-The easisest way to use this is to initialize the SummaryManager object => Get a summary using one or both of the summarization methods => Get reduction percentage based on the summarization method used.
-
-Calling reduction without getting a summary first will still work as specified in [Method Details](#meth).
 
 <a name="init"></a>
 ### Initialization
@@ -105,6 +102,13 @@ let sentiment = Summarizer.getSentiment();
 ```
 
 -This will return a Float.
+
+<a name="note"></a>
+### Usage Notes
+
+- The easisest way to use this is to initialize the SummaryManager object => Get a summary using one or both of the summarization methods => Get reduction percentage based on the summarization method used.
+
+- If a sentence cannot be split into sentences, the summary will return an Error().
 
 <a name="meth"></a>
 ## 3. Method Details
