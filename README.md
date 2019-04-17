@@ -199,9 +199,7 @@ How the text is summarized.
 
 ### Frequency based algorithm:
 
-This type of summary works best for text that is not too complicated. The advantage of this approach is that it more efficient 
-
-than the textrank implementation. It was heavily inspired by this [post](https://stackabuse.com/text-summarization-with-nltk-in-python/).
+This type of summary works best for text that is not too complicated. The advantage of this approach is that it more efficient than the textrank implementation. It was heavily inspired by this [post](https://stackabuse.com/text-summarization-with-nltk-in-python/).
 
 - Split the given text into sentences.
 
@@ -214,9 +212,7 @@ than the textrank implementation. It was heavily inspired by this [post](https:/
 
 ### TextRank based algorithm:
 
-While this approach costs more in terms of time complexity, it is better for getting the summary of things like newspaper 
-
-articles and essays. Read more about it [here](https://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf).
+While this approach costs more in terms of time complexity, it is better for getting the summary of things like newspaper articles and essays. Read more about it [here](https://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf).
 
 - Split the given text into sentences.
 
