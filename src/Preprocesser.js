@@ -7,7 +7,7 @@ class Preprocesser{
 		this.tokenizer = new natural.SentenceTokenizer(); 
 	}
 
-	//Turns the paragraph into a list of sentences 
+	//This method takes in a paragraph and returns a list of the sentences in the paragraph.
 	paragraphToSentences(string_to_process){
 		try{
 			let result = this.tokenizer.tokenize(string_to_process);
@@ -17,7 +17,7 @@ class Preprocesser{
 		}
 	}
 
-	//Cleans the sentences
+	//Cleans the sentences by removing punctuation and lowercasing capital letters.
 	cleanSentences(list_to_clean){
 		let sentence_map = new Map();
 		const regex = /[&\/\\#,+()$~%.'":*?<>{}]/g;
@@ -30,6 +30,7 @@ class Preprocesser{
 		return [list_to_clean,sentence_map];
 	}
 
+	//Takes in a list of sentences and returns a list of all of the words in the sentences.
 	tokenizeSentences(list_of_sentences){
 		let new_array = new Array();
 		new_array = list_of_sentences
@@ -40,6 +41,8 @@ class Preprocesser{
 		return result_list;
 	}
 
+	//Takes in a list of words and calculates the frequencies of the words.
+	//Returns a list. The first item is a map of word->frequency. The second is the max frequency.
 	getFrequencyAndMax(list_of_words){
 		let frequency_map = new Map();
 		let max = 0
@@ -58,7 +61,7 @@ class Preprocesser{
 		return [frequency_map, max];
 	}
 	
-	//Converts a frequency map into a map with weights
+	//Converts a frequency map into a map with "weights".
 	getWeights(list_of_words){
 		const frequencies_and_max = this.getFrequencyAndMax(list_of_words);
 		const frequencies_map = frequencies_and_max[0];
@@ -68,6 +71,7 @@ class Preprocesser{
 		});
 		return frequencies_map;
 	}
+
 
 	sentenceWeights(clean_sentences, weighted_map){
 		let weight_of_sentence = 0;
@@ -103,6 +107,7 @@ class Preprocesser{
 		}
 	}
 
+	//Used for the text rank summary. Takes two lists of words and gets the weight of the edge connecting the vertices.
 	getEdgeWeights(list1, list2){
 		let weight = 0;
 		let intial = list1
@@ -120,7 +125,7 @@ class Preprocesser{
 		return weight
 	}
 
-	//Needs to be tested further
+	//Creates the graph for the textrank algorithm.
 	createTextRankGraph(nouns_and_adjactive_map){
 		let graph = new WeightedGraph();
 		let key_list = [];
@@ -140,7 +145,7 @@ class Preprocesser{
 		return graph;
 	}
 
-
+	//TextRank algorithm.
 	textRank(graph){
 		let key_list = graph.getAllVertices();
 		let text_rank_map = new Map();

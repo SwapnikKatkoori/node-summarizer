@@ -8,6 +8,7 @@ class Summarizer{
 		this.new_length = 0;
 	}
 
+	//Takes in a list of sentences and weights and sorts by weight.
 	sortSentences(sentence_weights_list){
 		sentence_weights_list.sort((a,b)=>{
 			return b[0]-a[0];
@@ -15,6 +16,7 @@ class Summarizer{
 		return sentence_weights_list;
 	}
 
+	//Converts the textRank map into a list
 	textRankMapToList(text_rank_map){
 		let result_list = [];
 		text_rank_map.forEach((value, key, map)=>{
@@ -24,6 +26,7 @@ class Summarizer{
 		return result_list;
 	}
 
+	//Takes in a list of sorted sentences and a map of those sentences to the original sentences. 
 	listToString(sorted_sentences, clean_sentences){
 		const self = this;
 		let result_string = "";
