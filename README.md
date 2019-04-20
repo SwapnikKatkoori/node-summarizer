@@ -23,6 +23,7 @@ section for more information about the two different approaches used.
 3. [Method Details](#meth)
 4. [ How it Works ](#desc)
 5. [ Dependencies ](#depend)
+6. [ License ](#license)
 
 <a name="install"></a>
 ## 1. Install
@@ -250,3 +251,7 @@ ex. {"The Detroit Pistons are a good basketball team" => [detroit, pistons, good
   
    - Used to detect nouns and adjectives in a sentence in the TextRank algorithm.
   
+<a name="license"></a>
+## 6. Licence
+
+This project is licensed under the terms of the ISC license.
