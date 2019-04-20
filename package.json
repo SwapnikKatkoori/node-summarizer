@@ -1,6 +1,6 @@
 {
   "name": "node-summarizer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Text summarizer using Node.js",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "summarizer",
     "summarization"
   ],
-  "author": "Swapnik Katkoori",
+  "author": "Swapnik Katkoori <katkoor2@msu.edu>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/SwapnikKatkoori/Text-Summarizer/issues"
@@ -31,5 +31,9 @@
   },
   "devDependencies": {
     "jest": "^24.7.1"
-  }
+  },
+  "files": [
+    "index.js",
+  ]
+
 }
