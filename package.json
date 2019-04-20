@@ -33,7 +33,7 @@
     "jest": "^24.7.1"
   },
   "files": [
-    "index.js",
+    "index.js"
   ]
 
 }
