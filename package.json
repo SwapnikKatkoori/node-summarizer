@@ -34,7 +34,8 @@
   },
   "files": [
     "index.js",
-    "./tests"
+    "./tests",
+    "./src"
   ]
 
 }
