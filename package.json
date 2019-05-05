@@ -1,6 +1,6 @@
 {
   "name": "node-summarizer",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Text summarizer using Node.js",
   "main": "index.js",
   "scripts": {
@@ -31,11 +31,5 @@
   },
   "devDependencies": {
     "jest": "^24.7.1"
-  },
-  "files": [
-    "index.js",
-    "./tests",
-    "./src"
-  ]
-
+  }
 }
