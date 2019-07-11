@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/SwapnikKatkoori/Text-Summarizer#readme",
   "dependencies": {
-    "natural": "^0.6.3",
+    "sbd": "^1.0.15",
     "wordpos": "^1.2.0"
   },
   "devDependencies": {
