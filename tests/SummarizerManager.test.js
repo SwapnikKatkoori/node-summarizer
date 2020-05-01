@@ -26,11 +26,7 @@ test('Makes sure that there are no errors in frequency approach',()=>{
 	for(let i = 0; i<500; i++){
 		let Summarizer = new SummarizerManager(content,5);
 		let summary_obj = Summarizer.getSummaryByFrequency();
-		if (i==0){
-			console.log(summary_obj.weighted_map)
-		}
 		expect(typeof(summary_obj.summary)).toBe('string');
-
 	}
 })
 
