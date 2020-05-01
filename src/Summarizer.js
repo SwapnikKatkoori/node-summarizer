@@ -26,7 +26,7 @@ class Summarizer{
 		return result_list;
 	}
 
-	//Takes in a list of sorted sentences and a map of those sentences to the original sentences. 
+	//Takes in a list of sorted sentences and a map of those sentences to the original sentences. Returns a string of the entire summary
 	summaryToString(sorted_sentences, clean_sentences){
 		const self = this;
 		let result_string = "";
@@ -42,7 +42,7 @@ class Summarizer{
 		this.new_length = length_count;
 		return result_string;
 	}
-
+    // Takes in a list of sorted sentences and a map of those sentences to the original sentences. Returns an array of summarized sentences. 
 	summaryToArray(sorted_sentences, clean_sentences){
 		const self = this;
 		let result_array = [];
@@ -70,6 +70,7 @@ class Summarizer{
 		
 		return {
 			summary: self.summaryToString(sorted_sentences, clean_sentences),
+			summaryArray: self.summaryToArray(sorted_sentences, clean_sentences),
 			sentence_list: list_to_clean,
 			weighted_map: weighted_map,
 			sorted_sentences: sorted_sentences
