@@ -102,7 +102,7 @@ class Preprocesser{
 	 * Calculates the weight of each sentence by combining the weight of each word
 	 * @param clean_sentences:  {Array<string>} Array of unmodified sentences
 	 * @param weighted_map: {Map<string, number>} A map of words to word weight
-	 * @returns sentence_weight_list: {Array<Array<string>>} - Array of Arrays
+	 * @returns sentence_weight_list: {Array<Array<number, string]>} - Array of Arrays
 	 * - Inner array is [Average Weight of sentence: number, sentence: string]
 	 *   - Average weight of sentence is the weight of the sentence in sum divided by the number of words
 	 * - Outer array contains inner arrays for each sentence

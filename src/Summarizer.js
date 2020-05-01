@@ -1,6 +1,11 @@
 const Preprocesser = require('./Preprocesser').Preprocesser;
 
 class Summarizer{
+	/**
+	 * @constructor
+	 * @param string_to_process: {string} - A big string to process
+	 * @param number_of_sentences: {number} - The number of sentences in the string
+	 */
 	constructor(string_to_process, number_of_sentences){
 		this.preprocesser = new Preprocesser();
 		this.number_of_sentences = number_of_sentences;
@@ -8,7 +13,11 @@ class Summarizer{
 		this.new_length = 0;
 	}
 
-	//Takes in a list of sentences and weights and sorts by weight.
+	/**
+	 * Sorts a list of sentences by weight
+	 * @param sentence_weights_list: {Array<Array<number: weight, string: sentences>>}
+	 * @returns {Array<Array<number: weight, string: sentences>>}
+	 */
 	sortSentences(sentence_weights_list){
 		sentence_weights_list.sort((a,b)=>{
 			return b[0]-a[0];
@@ -17,6 +26,11 @@ class Summarizer{
 	}
 
 	//Converts the textRank map into a list
+	/**
+	 * Converts a text rank map into a list of Arrays
+	 * @param text_rank_map {Map<string, number>}
+	 * @returns {Array<Array<number, string>>} - Array of arrays that contain the sentence and the weight
+	 */
 	textRankMapToList(text_rank_map){
 		let result_list = [];
 		text_rank_map.forEach((value, key, map)=>{
@@ -26,12 +40,19 @@ class Summarizer{
 		return result_list;
 	}
 
-	//Takes in a list of sorted sentences and a map of those sentences to the original sentences. 
+	//Takes in a list of sorted sentences and a map of those sentences to the original sentences.
+	/**
+	 * TODO very confused by this function...
+	 * @param sorted_sentences
+	 * @param clean_sentences
+	 * @returns {string}
+	 */
 	listToString(sorted_sentences, clean_sentences){
 		const self = this;
-		let result_string = "";
+		let result_string = ""; // What's being passed out
 		let length_count = 0;
 		let count = self.number_of_sentences;
+		// Default to the length of the sorted sentences
 		if(sorted_sentences.length < self.number_of_sentences){
 			count = sorted_sentences.length;
 		}
@@ -43,6 +64,10 @@ class Summarizer{
 		return result_string;
 	}
 
+	/**
+	 * TODO also very confused by these types
+	 * @returns {{summary: string, sentence_list: (Error|Array<string>), sorted_sentences: *, weighted_map: Map<string, number>}}
+	 */
 	summarizeByFrequency(){
 		const self = this
 		const list_to_clean = self.preprocesser.paragraphToSentences(self.string_to_process);
@@ -51,7 +76,7 @@ class Summarizer{
 		const weighted_map = self.preprocesser.getWeights(tokenized);
 		const sentence_weights_list = self.preprocesser.sentenceWeights(clean_sentences[0], weighted_map);
 		const sorted_sentences = self.sortSentences(sentence_weights_list);
-		
+
 		return {
 			summary: self.listToString(sorted_sentences, clean_sentences),
 			sentence_list: list_to_clean,
@@ -60,6 +85,11 @@ class Summarizer{
 		}
 	}
 
+	/**
+	 * Summarise the sentence by rank
+	 * TODO very confused by this one too, help pls
+	 * @returns {Promise<{summary: string, nouns_and_adjactive_map: Map<string, Array<string>>, sentence_list: (Error|Array<string>)}>}
+	 */
 	async summarizeByRank(){
 		const self = this;
 		const list_to_clean = self.preprocesser.paragraphToSentences(self.string_to_process);
