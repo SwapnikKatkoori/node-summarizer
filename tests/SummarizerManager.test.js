@@ -10,7 +10,7 @@ test('Gets the sentiment analysis', async () => {
 });
 
 test('Makes sure that there are no errors in the random walk',async ()=>{
-	jest.setTimeout(30000);
+	jest.setTimeout(20000);
 
 	for(let i = 0; i<500; i++){
 		let Summarizer = new SummarizerManager(content,5);
