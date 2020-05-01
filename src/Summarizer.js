@@ -81,16 +81,15 @@ class Summarizer{
 		const list_to_clean = self.preprocesser.paragraphToSentences(self.string_to_process);
 		const clean_sentences = self.preprocesser.cleanSentences(list_to_clean);
 		try{
-			const nouns_and_adjactive_map = await self.preprocesser.nounsAndAdjectives(clean_sentences[0]);
-			let text_rank_graph = self.preprocesser.createTextRankGraph(nouns_and_adjactive_map);
+			const nouns_and_adjective_map = await self.preprocesser.nounsAndAdjectives(clean_sentences[0]);
+			let text_rank_graph = self.preprocesser.createTextRankGraph(nouns_and_adjective_map);
 			let text_rank_map = self.preprocesser.textRank(text_rank_graph);
 			let text_rank_list = self.sortSentences(self.textRankMapToList(text_rank_map));
-			//let list_to_pass_in = text_rank_list;
 			return {
-				summaryString: self.summaryToString(text_rank_list, clean_sentences),
+				summary: self.summaryToString(text_rank_list, clean_sentences),
 				summaryArray: self.summaryToArray(text_rank_list, clean_sentences),
 				sentence_list: list_to_clean,
-				nouns_and_adjactive_map: nouns_and_adjactive_map
+				nouns_and_adjective_map: nouns_and_adjective_map
 			}
 		}catch(err){
 			console.log(err);
