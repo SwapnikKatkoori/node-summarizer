@@ -1,16 +1,16 @@
-const natural = require("natural");
 const WordPos = require("wordpos");
 const WeightedGraph = require('./WeightedGraph').WeightedGraph;
+const sbd = require('sbd');
 
 class Preprocesser{
 	constructor(){
-		this.tokenizer = new natural.SentenceTokenizer(); 
+		this.tokenizer = sbd
 	}
 
 	//This method takes in a paragraph and returns a list of the sentences in the paragraph.
 	paragraphToSentences(string_to_process){
 		try{
-			let result = this.tokenizer.tokenize(string_to_process);
+			const result = this.tokenizer.sentences(string_to_process, {});
 			return result;
 		}catch(err){
 			return Error("Cannot toeknize the given string.");

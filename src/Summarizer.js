@@ -26,8 +26,8 @@ class Summarizer{
 		return result_list;
 	}
 
-	//Takes in a list of sorted sentences and a map of those sentences to the original sentences. 
-	listToString(sorted_sentences, clean_sentences){
+	//Takes in a list of sorted sentences and a map of those sentences to the original sentences. Returns a string of the entire summary
+	summaryToString(sorted_sentences, clean_sentences){
 		const self = this;
 		let result_string = "";
 		let length_count = 0;
@@ -42,6 +42,22 @@ class Summarizer{
 		this.new_length = length_count;
 		return result_string;
 	}
+    // Takes in a list of sorted sentences and a map of those sentences to the original sentences. Returns an array of summarized sentences. 
+	summaryToArray(sorted_sentences, clean_sentences){
+		const self = this;
+		let result_array = [];
+		let length_count = 0;
+		let count = self.number_of_sentences;
+		if(sorted_sentences.length < self.number_of_sentences){
+			count = sorted_sentences.length;
+		}
+		for(var i=0; i<count; i++){
+			length_count += sorted_sentences[i][1].split(" ").length;
+			result_array.push(clean_sentences[1].get(sorted_sentences[i][1]));
+		}
+		this.new_length = length_count;
+		return result_array;
+	}
 
 	summarizeByFrequency(){
 		const self = this
@@ -53,7 +69,8 @@ class Summarizer{
 		const sorted_sentences = self.sortSentences(sentence_weights_list);
 		
 		return {
-			summary: self.listToString(sorted_sentences, clean_sentences),
+			summary: self.summaryToString(sorted_sentences, clean_sentences),
+			summaryArray: self.summaryToArray(sorted_sentences, clean_sentences),
 			sentence_list: list_to_clean,
 			weighted_map: weighted_map,
 			sorted_sentences: sorted_sentences
@@ -65,15 +82,15 @@ class Summarizer{
 		const list_to_clean = self.preprocesser.paragraphToSentences(self.string_to_process);
 		const clean_sentences = self.preprocesser.cleanSentences(list_to_clean);
 		try{
-			const nouns_and_adjactive_map = await self.preprocesser.nounsAndAdjectives(clean_sentences[0]);
-			let text_rank_graph = self.preprocesser.createTextRankGraph(nouns_and_adjactive_map);
+			const nouns_and_adjective_map = await self.preprocesser.nounsAndAdjectives(clean_sentences[0]);
+			let text_rank_graph = self.preprocesser.createTextRankGraph(nouns_and_adjective_map);
 			let text_rank_map = self.preprocesser.textRank(text_rank_graph);
 			let text_rank_list = self.sortSentences(self.textRankMapToList(text_rank_map));
-			//let list_to_pass_in = text_rank_list;
 			return {
-				summary: self.listToString(text_rank_list, clean_sentences),
+				summary: self.summaryToString(text_rank_list, clean_sentences),
+				summaryArray: self.summaryToArray(text_rank_list, clean_sentences),
 				sentence_list: list_to_clean,
-				nouns_and_adjactive_map: nouns_and_adjactive_map
+				nouns_and_adjective_map: nouns_and_adjective_map
 			}
 		}catch(err){
 			console.log(err);
